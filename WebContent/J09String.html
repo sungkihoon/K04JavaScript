@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J09String.html</title>
+
+    <script>
+
+        document.write("<h2>JS의 Core객체 - String</h2>");
+
+        var str1 = "Hello Javascript";
+        var str2 = "안녕 자바스크립트";
+        var str3 = "Hi JS";
+        var str4 = new String("Hi 자바스크립트");
+
+        document.write("str1의 길이 : " + str1.length + "<br>"); //결과 : 16
+
+        //a태그를 통해 링크를 거는 대신 link()함수를 통해 걸수있다.
+        document.write("링크걸기(태그) : " +
+            "<a href = 'http://naver.com'>" + str4 + "</a><br>");
+        document.write("링크걸기(내장함수) : " + str4.link('http://naver.com'));
+
+        //특정 index의 문자 하나를 얻어온다.
+        document.write("<h2>charAt(인덱스)</h2>");
+        document.write(str1.charAt(1)); //결과 : e
+
+        document.write("<h2>substring(시작, 끝)</h2>");
+        document.write('Academy'.substring(3, 7)); //결과 : demy
+
+        //문자열 잘라내기2
+        document.write("<h2>substr(시작, 길이)</h2>");
+        document.write('Academy'.substr(3, 4)); //결과 : demy
+
+        //특정 index의 문자의 아스키코드값 얻어오기
+        document.write("<h2>charCodeAt(인덱스)</h2>");
+        document.write('Academy'.charCodeAt(1)); //결과 : 99
+
+        //아스키코드를 문자로 변경하기
+        document.write("<h2>String.fromCharCode(아스키코드)</h2>");
+        document.write(String.fromCharCode(67) + "<br>"); //결과 : C
+        document.write(String.fromCharCode(99) + "<br>"); //결과 : c
+
+        //문자열을 문자열배열로 즉시 사용할 수 있다.
+        document.write("<h2>문자열을 배열처럼 사용하기</h2>");
+        for (var i = 0; i < str2.length; i++) {
+            document.write("str2[" + i + "] = " + str2[i] + "<br>");
+        }
+        document.write("<br>");
+
+        /*
+        연습문제]나이를 매개변수로 받아 아래와같은 결과를 반환하는 함수를 
+        정의하시오. 만약 나이가 숫자형식이 아니면 false, 
+        숫자형식이면 true를 반환한다. 반환받은 결과를 이용하여 '숫자형식입니다.'
+        혹은 '숫자형식이아닙니다'라는 문자열을 출력하는 프로그램을 작성하시오
+*/
+        function isNumber(param) {
+
+            //숫자로 판단되면 true아니면 false 반환
+            //(48 > param.charCodeAt(1) || param.charCodeAt > 57) ? true : false;
+            for (var i = 0; i < param.length; i++) {
+                //숫자가 아닌 경우 false값 반환
+                if (!(param[i].charCodeAt(0) >= 48 && param[i].charCodeAt(0) <= 57)) {
+                    return false;
+                }
+            }
+            //문자열 전체를 검사한 후 숫자만 있다면 true반환
+            return true;
+        }
+        document.write("<h2>연습문제 > 숫자형식찾기</h2>");
+        var isNum1 = isNumber("100");
+        (isNum1 == true) ? document.write("숫자형식<br/>") : document.write("숫자형식아님<br/>");
+        var isNum2 = isNumber("100A");
+        (isNum2 == true) ? document.write("숫자형식<br/>") : document.write("숫자형식아님<br/>");
+
+        //구분자로 문자열을 분리해서 배열을 반환하는 함수
+        document.write("<h2>split() 함수</h2>");
+        document.write("<h3>구분자가 있는경우</h3>");
+        var tel = "010-1234-5678";
+        var telArr = tel.split("-");
+        //크기가 3인 배열로 반환
+        for (var i = 0; i < telArr.length; i++) {
+            document.write("telArr[" + i + "]=" + telArr[i] + "<br/>");
+        }
+
+        document.write("<h3>구분자가 없는경우</h3>");
+        var telArrNo = tel.split("*");
+        //크기가 1인 배열로 반환
+        for (var i = 0; i < telArrNo.length; i++) {
+            document.write("telArrNo[" + i + "]=" + telArrNo[i] + "<br/>");
+        }
+
+        //특정 문자열의 인덱스를 반환하는 함수
+        document.write("<h2>indexOf()함수</h2>");
+        document.write(str2.indexOf("자바") != -1 ? "a포함됨<br/>" :
+            "a 포함안됨<br/>");
+
+        document.write("<h2>lastIndexOf()함수</h2>");
+        document.write(str1.lastIndexOf("a") != -1 ? "a포함됨<br/>" :
+            "a 포함안됨<br/>");
+        document.write(str1 + "에서 a의 마지막 위치는?" + str1.lastIndexOf("a")
+            + "<br/>");
+
+        /*
+        연습문제] 아래 이메일 주소에서 @와 .사이에 있는값만
+        추출하여 출력하는 프로그램을 작성하시오.
+        xxx@yyy.co.kr 이라면 yyy만 출력되어야 한다.
+        */
+        var emailArray = ["kim@naver.com", "sung@hanmail.net", "park@ikosmo.co.kr"];
+        var getDomainStr = function (emailArr) {
+            //이부분을 구현하시오.
+            
+            //배열의 크기만큼 반복
+            for(var i=0; i<emailArr.length; i++){
+                //@의 인덱스를 찾아 1을 더해준다. 출발점이 된다.
+                var startIdx = emailArr[i].indexOf("@")+1;
+                //.의 인덱스를 찾는다.
+                var endIdx = emailArr[i].indexOf(".");
+                //문자열 잘라내기
+                var resultStr=emailArr[i].substring(startIdx, endIdx);
+                document.write("결과1(Indexof)="+resultStr+"<br/>");
+            }
+
+            document.write("<br/>");
+            for(var i=0; i<emailArr.length; i++){
+                //이메일을 @으로 1차 split한다.
+                var firstArr = emailArr[i].split("@");
+                //위 결과의 1번 인덱스값으로 2차 split을 진행한다.
+                var secondArr = firstArr[1].split(".");
+                //두번째 split결과의 0번 인덱스를 출력한다.
+                document.write("결과2(split)="+secondArr[0]+"<br/>");
+            }
+        }
+        document.write("<h2>연습문제>도메인 추출하기</h2>");
+        getDomainStr(emailArray);
+
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

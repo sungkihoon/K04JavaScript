@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J04ForWhile.html</title>
+    <script>
+        /*
+        Java : for문 안에서 선언된 변수는 for문을 벗어나면 소멸된다.
+        JS : script태그 내에서 선언된 변수는 해당 페이지의 모든 영역에서
+            사용할 수 있다. for문 안에서 선언된 변수 역시 전역적으로
+            사용할 수 있다.
+        */
+        for (var i = 0; i < 5; i++) {
+            var varInFor = 100;
+            document.write('i=' + i + "<br/>");
+        }
+        document.write("for문이 끝난 후 i의 값:" + i + "<br/>");
+        document.write("for문 안에서 선언한 변수 varInFor:" + varInFor);
+
+        /*
+        1 0 0 0 0
+        0 1 0 0 0
+        0 0 1 0 0
+        0 0 0 1 0
+        0 0 0 0 1    
+        
+        시나리오]for문으로 위와 같은 모양을 출력하는 JS를 작성하시오.
+        */
+
+        document.write("<h2>이중 for문을 통한 출력</h2>")
+        for (var i = 1; i <= 5; i++) {
+            for (var j = 1; j <= 5; j++) {
+                if (i == j)
+                    document.write("1&nbsp");
+                else
+                    document.write("0&nbsp");
+            }
+            document.write("<br/>");
+        }
+
+        /*
+        연습문제]위 모양을 이중 while문으로 수정하시오.
+        */
+        document.write("<h2>이중 while문으로 수정하여 출력하기</h2>");
+        var x = 1, y = 1;
+        while (x <= 5) {
+            while (y <= 5) {
+                if (x == y) {
+                    document.write("1&nbsp");
+                } else {
+                    document.write("0&nbsp");
+                }
+                y++;
+            }
+            document.write("<br/>");
+            y = 1;
+            x++;
+        }
+    </script>
+</head>
+
+<body>
+    <script>
+        /*
+        head영역에서 선언한 변수는 HTML문서 전체에서 사용 가능하므로
+        아래부분은 Error없이 정상출력된다.
+        */
+        document.write("여기는 바디영역");
+        document.write("for문이 끝난 후 body에서의 i값 출력:" + i + "<br/>");
+        document.write("for문 안에서 선언한 varInFor:" + varInFor);
+
+        function gugudanPrint() {
+            var dan = document.getElementById("dan").value;
+            var su = document.getElementById("su").value;
+
+            var strGugu = "<table border='1'>";
+            for (var x = 2; x <= dan; x++) {
+                strGugu += "<tr>";
+
+                for (var y = 1; y <= su; y++) {
+                    strGugu += "<td>" + x + "*" + y + "="
+                        + (x * y) + "</td>";
+                }
+
+                strGugu += "</tr>";
+            }
+            strGugu += "</table>";
+
+            document.getElementById("here_gugudan").innerHTML
+                = strGugu;
+        }
+    </script>
+    <!-- table>tr*3>td*2 -->
+    <table border=1>
+        <tr>
+            <td>단</td>
+            <td>
+                <input type="text" id="dan" />
+            </td>
+        </tr>
+        <tr>
+            <td>수</td>
+            <td>
+                <!-- select>option*9 -->
+                <select id="su">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="button" value="구구단출력" onclick="gugudanPrint();" />
+            </td>
+        </tr>
+    </table>
+    <div>
+        <span id="here_gugudan">
+            구구단은 여기에 출력됩니다.
+        </span>
+    </div>
+
+</body>
+
+</html>

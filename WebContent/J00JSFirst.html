@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J00JSFirst.html</title>
+
+    <Style>
+        *{margin: 0; padding: 0;}
+    </Style>
+    <script type="text/javascript">
+        /*
+        JavaScript란?
+            웹브라우저에 의해 순차적으로 해석되어 실행되는
+            인터프리터 방식의 언어로 주로 웹페이지릐 동적인
+            제어를 위해 사용된다.
+        */
+        var number;//변수를 선언함
+        alert("number = " + number);//undefined 상태임
+        if(number == undefined){
+            alert("타입이 정의되지 않음.");
+        }
+        else {
+            alert("타입이 정의됨.");
+        }
+
+        number = 10;//number타입으로 지정됨
+        console.log("number", number);//개발자도구의 console에서 확인가능
+    
+        /*
+        Javascript는 문자와 문자열을 구분하지 않는다.
+        따라서 문자열을 표현할때 '(싱글), "(더블) 모두 사용가능하다.
+        */
+
+        if(number == undefined){
+            console.log("타입이 정의되지 않음.");
+        }
+        else {
+            console.log("타입이 정의됨.");
+        }
+    </script>
+
+</head>
+<body>
+    <h2>자바스크립트 첫번째 예제</h2>
+    alert() : 자바 스크립트의 기본함수로 경고창을 띄워줍니다.
+    <script>
+        alert('script태그는 body에쓸 수도 있습니다.');
+        console.log('개발자도구의 consol에서 확인하세요.');
+    </script>
+</body>
+</html>

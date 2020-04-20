@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J12DOM.html</title>
+    <script>
+        var getString = function (param) {
+            switch (param) {
+                case "POL": return "정치";
+                case "ECO": return "경제";
+                case "ENT": return "연예";
+            }
+        }
+
+        function fnGetElementsByTag() {
+            /*
+            태그명으로 DOM객체 얻어오기. 2개이상 존재할수 있으므로
+            배열로 얻어오게 된다.
+            */
+            var inputs = document.getElementsByTagName("input");
+            var checkString = "", inputString;
+            //얻어온 input태그의 요소 갯수만큼 반복
+            for (var i = 0; i < inputs.length; i++) {
+                //얻어온 DOM이 checkbox이면서 check된 상태인지를 확인
+                if (inputs[i].type == "checkbox" && inputs[i].checked == true) {
+                    checkString += getString(inputs[i].value) + " ";
+
+                    //임시삽입
+                    inputs[i].type = "text"; //checkbox를 text상자로 변경
+                    inputs[i].size = 10; //size를 10으로 변경
+                }
+                //type이 text이면서 name속성이 txt인지를 확인
+                if (inputs[i].type == "text" && inputs[i].name == "txt") {
+                    inputString = inputs[i].value;
+                }
+            }
+            alert("선택한값: " + checkString + ", 압력한값: " + inputString);
+        }
+
+        function fnGetDomain() {
+            //a태그를 얻어온다.
+            var a_tags = document.getElementsByTagName("a");
+
+            for (var i = 0; i < a_tags.length; i++) {
+                /*
+                메서드체인 : 메소드를 닷(.)으로 연결하여 여러개의 함수를
+                동시에 호출하는것을 말한다. JS, jQuery에서 많이 사용된다.
+
+                DOM객체의 href속성을 대문자로 변경한후 WWW하는 문자열이
+                포함되었는지를 확인.....
+                */
+                if (a_tags[i].href.toUpperCase().indexOf("WWW") != -1) {
+                    alert(a_tags[i].href); //naver와 nate만 경고창으로 출력
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <script>
+        function fnGetElementsByName() {
+            //name 속성을 통해서 DOM객체를 얻어와서 배열로 반환
+            var names = document.getElementsByName("inter");
+            /*
+            checkdox를 
+            체크할때는 true혹은 checkd값을 설정한다
+            언체크할깨는 false혹은 null값을 설정한다
+            단 , 체크 혹은 언체크를 판단해야 할때는
+            반드시 true/false를 사용해야한다
+            */
+            for (var i = 0; i < names.length; i++) {
+                //상태 변경은 아래 두가지 모두 가능함.
+                if (names[i].checked == true) {
+                    //names[i].checked = null;
+                    names[i].checked = false;
+                }
+                else if (names[i].checked == false) {
+                    //names[i].checked="checked";
+                    names[i].checked = true;
+                }
+            }
+        }
+        //class 속성으로 DOM객체 얻어와서 배열로 반환
+        function fnGetElementsClass() {
+            var portals = document.getElementsByClassName("portal");
+            /*
+            innerHTML속성을 통해서 시작태그와 종료캐그 사이의
+            컨텐츠(텍스트)를 얻어올수 있다.
+            */
+            for (var i = 0; i < portals.length; i++) {
+                alert(portals[i].innerHTML);
+            }
+        }
+    </script>
+
+    <h2>DOM객체 사용하기</h2>
+    <h3>태그명으로 얻어오기</h3>
+    <input type="checkbox" name="inter" value="POL" checked="checked" /> 정치
+    <input type="checkbox" name="inter" value="ECO" /> 경제
+    <input type="checkbox" name="inter" value="ENT" /> 연예
+    <input type="text" name="txt">
+    <input type="button" value="태그명으로 DOM객체얻기" onclick="fnGetElementsByTag();">
+
+    <h2>태그명으로 객체 얻기2</h2>
+    <ul>
+        <li><a href="https://www.naver.com/">네이바</a></li>
+        <li><a href="https://daum.net/">도움</a></li>
+        <li><a href="https://www.nate.com/">너이트</a></li>
+    </ul>
+    <button onclick="fnGetDomain();">도메인얻어오기</button>
+
+    <h2>이름으로 얻기 </h2>
+    <h3>아래 버튼을 누르시면 위 체크박스가 반전됩니다.</h3>
+    <input type="button" onclick="fnGetElementsByName();" value="name속성에 지정한 값으로 DOM객체 얻기 " />
+
+    <h2>클래스명으로 객체 얻기</h2>
+    <ul>
+        <il><a href="#" class="portal">네<b>이</b>버</a></il>
+        <il><a href="#" class="portal">다음</a></il>
+        <il><a href="#" class="portal">네이트</a></il>
+    </ul>
+    <button onclick="fnGetElementsClass();">
+        클래스명으로 DOM객체 얻어오기
+    </button>
+
+    <script>
+        /*
+        img태그의 src속성과 width속성을 동적으로 변경하면
+        쇼핑몰과 같이 이미지변경이 가능하다.
+        */
+        function fnChangeImg(imgNum){
+            var img_tag = document.getElementById("trump");
+            img_tag.src = "./images/"+imgNum+".jpg";
+            img_tag.width = parseInt(imgNum*10);
+        }
+    </script>
+
+    <h2>동적으로 이미지 교체하기(ID로 DOM객체얻기)</h2>
+    <fieldset>
+        <legend>이미지 동적 교체</legend>
+        <a href="javascript:fnChangeImg(1);">1번이미지</a>
+        <a href="javascript:fnChangeImg(2);">2번이미지</a>
+        <a href="javascript:fnChangeImg(3);">3번이미지</a>
+        <a href="javascript:fnChangeImg(4);">4번이미지</a>
+        <a href="javascript:fnChangeImg(5);">5번이미지</a>
+        <a href="javascript:fnChangeImg(6);">6번이미지</a>
+        <a href="javascript:fnChangeImg(7);">7번이미지</a>
+        <a href="javascript:fnChangeImg(8);">8번이미지</a>
+        <a href="javascript:fnChangeImg(9);">9번이미지</a>
+        <a href="javascript:fnChangeImg(10);">10번이미지</a>
+        <hr />
+        <img id="trump" src="" width="100" alt="이미지교체하기" />
+    </fieldset>
+</body>
+
+</html>

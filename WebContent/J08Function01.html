@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J08Function01.html</title>
+    <script>
+        /*
+        함수정의방법
+        방법1] 이름이 있는 함수 : 유명함수
+            function 함수명 매개변수1, 매개변수 2,....{
+                함수의 실행부;
+                return 변수 혹은 값;
+            }
+        방법2] 이름이 없는 함수 : 무명함수
+            var 함수명으로 사용할 참조변수 = function(매개변수1, 매개변수2)..{
+                함수의 실행부;
+                return 변수 혹은 값;
+            }
+        - 매개변수를 쓸때 var는 쓰지 않는다. 변수명만 쓸 수 있다.
+        - 함수 내에서 정의된 변수는 지역변수가 되어 함수 종료시 소멸된다.
+        */
+        //유명함수의 형태
+        function noParamNoReturn() {
+            document.write("====메뉴====<br/>");
+            document.write("1.계속 2.나가기<br/>");
+            document.write("==========<br/><br/>");
+        }
+        noParamNoReturn();
+        //무명함수의 형태
+        var yesParamNoReturn = function (start, end) {
+            var sum = 0;
+            for (var i = start; i <= end; i++) {
+                sum += i;
+            }
+            document.write(start + "부터 " + end + "까지의합:" + sum + "<br/>");
+        }
+        yesParamNoReturn(1, 10);
+        yesParamNoReturn(1, 100);
+        yesParamNoReturn(1, 1000);
+
+        var noParamNoReturn = function () {
+
+            var name = prompt("이름을 입력하세요", "");
+            var age = prompt("나이를 입력하세요", "20");
+
+            return name + "은(는) " + age + " 살입니다.<br/>";
+            /*
+            Java에서는 실행되지 않는 영역이므로 에러가 발생되지만
+            JS에서는 에러가 발생하지 않는다. 단, 실행은 되지 않는다.
+            */
+
+            document.write("return문 이후 출력문");
+        }
+        document.write(noParamNoReturn());
+
+        var yesParamNoReturn = function (num1, num2) {
+            return num1 > num2 ? num1 : num2;
+        }
+        document.write("큰수는?" + yesParamNoReturn(10, 20));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
