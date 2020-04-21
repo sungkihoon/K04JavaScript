@@ -9,12 +9,21 @@
             window.open("openChild2nd.html","child2",
             "width=300, height=300, left=300, top=0");
         }
+        /*
+        JS에서 CSS속성 제어하기
+            :CSS속성중-(하이픈)이 있는 속성은 -을 제거한후 다음 첫문자를 
+            대문자로 표현한다. -이 없는 경우는 원형그래로 사용한다.
+            EX) font-size => fontSize
+                color => color
+        */
+        //부모창의 버튼을 text상자로 변경함
         var openerText = function(){
             opener.document.getElementById("btnFirst").type="text";
             opener.document.getElementById("btnFirst").style.backgroundColor="red";
             
         }
 
+        //부모창의 text상자를 button으로 변경함
         var openerButton = function(){
             opener.document.getElementById("btnFirst").type="button";
             opener.document.getElementById("btnFirst").style.backgroundColor="blue";
@@ -26,7 +35,7 @@
     <h2>openChild First창</h2>
     <p style="text-align: center;">
         <button onclick="openChild2();">
-            팜업에서 팝업열기
+            팝업에서 팝업열기
         </button>
         <button onclick="openerText();">
             부모창의 버튼을 text박스로 변경하기
