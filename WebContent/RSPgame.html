@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가위바위보게임</title>
+    <script>
+        var rsp;
+        function fnChangeImg(imgName){
+                var img_tag = document.getElementById("me");
+                img_tag.src = "./images/"+imgName+".jpg";
+        }
+
+        function fnRandom(){
+    
+            var img_tag = document.getElementById("com");
+            img_tag.src = "./images/"+imgName+".jpg";
+            var randNum = parseInt(Math.random()*3)+1;
+
+             if(rsp==1){
+                fnChangeImg("scissors");
+             }else if(rsp==2){
+                   fnChangeImg("rock");
+               }else if(rsp==3){
+                 fnChangeImg("paper");
+            }
+
+        }
+    </script>
+   
+
+</head>
+<body>
+    <h1>가위바위보게임</h1>
+    <div>
+        <table border="1" width="600px" height="650px">
+            <tr>
+                <td width="300px"height="100px">
+                    컴퓨터
+                </td>
+                <td>
+                    나
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img id="com" src="./images/start.png">
+                </td>
+                <td>
+                    <img id="me" src="./images/start.png">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" height="100px">
+                    ㅎㅇ
+                </td>
+            </tr>
+        </table>
+        <button href="javascript:fnChangeImg('scissors');" onclick="fnRandom();">가위</button>
+        <button onclick="fnRandom();"><a href="javascript:fnChangeImg('rock');">바위</a></button>
+        <button onclick="fnRandom();"><a href="javascript:fnChangeImg('paper');">보</a></button>
+    </div>
+</body>
+</html>

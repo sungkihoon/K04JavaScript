@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>openChild2nd.html</title>
+    <script>
+        function openerCtrl(){
+            var tempZip = parseInt(Math.random()*100000);
+            opener.opener.document.getElementById("zipcode").value=tempZip;
+            opener.opener.document.getElementById("addr1").value="여기는 한국소프트웨어인재개발원";
+        }
+    </script>
+</head>
+<body>
+    <h2>openChild Second 창</h2>
+    <p style="text-align: center;">
+        <button onclick="openerCtrl();">
+            opener>opener로 데이터 보내기
+        </button>
+        <button onclick="opener.close();">
+            opener 닫기
+        </button>
+        <button onclick="self.close();">
+            self 닫기
+        </button>
+    </p>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J13Window01Location.html</title>
+    <script>
+        function fnLogin(){
+            //아이디, 패스워드에 입력한 값을 DOM을 통해 가져오기
+            var id = document.getElementById("user_id").value;
+            var pw = document.getElementById("user_pw").value;
+
+            /*
+            window객체는 JS에서 최상위 객체이므로 생략가능함.
+            */
+            if(id=="Kim" && pw=="1234"){
+                window.location.href="./pages/history01.html";
+            }else{
+                location.href="./pages/history02.html";
+            }
+        }
+        //타겟을 지정할때는 location객체앞에 타겟을 기술한다.
+        function fnLoginIframe(){
+            frmArea.location.href="./pages/history01.html";
+        }
+    </script>
+</head>
+<body>
+    <h2>로그인 화면</h2>
+    아이디: <input type="text" id="user_id"/>
+    <br/>
+    패스워드: <input type="text" id="user_pw"/>
+    <br/>
+    <input type="button" value="로그인" onclick="fnLogin();">
+    <br/>
+    <input type="button" value="로그인[ifame]" onclick="fnLoginIframe();">
+    <hr/>
+    <iframe src="" frameborder="1" name="frmArea" width="300" height="200"></iframe> 
+</body>
+</html>

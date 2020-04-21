@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>openChild1st.html</title>
+    <script>
+        function openChild2(){
+            window.open("openChild2nd.html","child2",
+            "width=300, height=300, left=300, top=0");
+        }
+        var openerText = function(){
+            opener.document.getElementById("btnFirst").type="text";
+            opener.document.getElementById("btnFirst").style.backgroundColor="red";
+            
+        }
+
+        var openerButton = function(){
+            opener.document.getElementById("btnFirst").type="button";
+            opener.document.getElementById("btnFirst").style.backgroundColor="blue";
+            
+        }
+    </script>
+</head>
+<body>
+    <h2>openChild First창</h2>
+    <p style="text-align: center;">
+        <button onclick="openChild2();">
+            팜업에서 팝업열기
+        </button>
+        <button onclick="openerText();">
+            부모창의 버튼을 text박스로 변경하기
+        </button>  
+        <button onclick="openerButton();">
+            부모창의버튼을 button으로 변경하기
+        </button>
+    </p>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J13Window03Open.html</title>
+    <script>
+        /*
+        open() : 광고나 공지사항을 게시할 팝업창을 열고싶을때 사용하는 함수
+            형식]
+                window.open("창의경로 및 URL","창의이름","창의속성:모양 및 위치");
+            -창의이름을 지정하지 않으면 동일한 창이 여러개 띄워질수도 있다.
+            -창의이름이 동일하면 여러개의 창이 하나의 창에 띄어질수도 있다.
+        */
+        function findZipcode(){
+            //스크롤바만 보임상태로 설정.
+            window.open("./pages/zipcode.html", "Zip", "width=400, height=400, left=200, top=50,"+
+            " location=no, toolbar=no, menubar=no, scrollbars=yes, resizable=no");
+        }
+        /*
+        대부분의 속성은 익스플로러에서만 적용된다. 크롬이나 파이어폭스에서는 적용되지 않는다.
+        */
+        //open()함수가 반환하는 윈도우 객체를 저장하기위한 전역변수
+        var winObj1;
+        function popFirst(){
+            /*
+            창의제어
+                - 부모창에서 자식팝업창을 제어할떄는 팝업창의 참조변수를 이용한다
+                - 즉 open()함수가 반환하는 윈도우객체를 이용해서 제어할수있다.
+            */
+            winObj1= window.open("./pages/zipcode.html", "pop1", "width=300, height=300, left=0, top=0")
+        }
+        function popClose(){
+            alert("팝업창1을 닫습니다.");
+            winObj1.close();
+        }
+
+        function openChild1(){
+            window.open("./pages/openChild1st.html", "child1", "width=300, height=300, left=0, top=0");
+        }
+
+        function screenCenterPop(){
+            var s_width= window.screen.width;
+            var s_height= window.screen.height;
+
+            alert("모니터해상도>가로:"+s_width+", 세로:"+s_height);
+
+            var leftVar= s_width/2-300/2;
+            var topVar= s_height/2-300/2;
+            window.open("./pages/popup01.html","popup","width=300, height=300, left="+leftVar+",top="+topVar);
+        }
+    </script>
+</head>
+<body>
+    <h2>팝업창 제어하기</h2>
+    <h3>여기는 부모창임</h3>
+    <fieldset>
+        <legend>우편번호 검색하기</legend>
+        <table>
+            <tr>
+                <td>우편번호</td>
+                <td><input type="text" id="zipcode" size="5">
+                    <button onclick="findZipcode();">우편번호찾기</button>
+                </td>
+            </tr>
+            <tr>
+                <td>기본주소</td>
+                <td>
+                    <input type="text" id="addr1" size="30">
+                </td>
+            </tr>
+            <tr>
+                <td>상세주소</td>
+                <td>
+                    <input type="text" id="addr2" size="40">
+                </td>
+            </tr>
+        </table>
+        <h2>부모창에서 팝업창 제어하기</h2>
+        <p style="text-align: center;">
+            <button onclick="popFirst();">첫번째 팝업창 열기</button>
+            
+            <button onclick="popClose();">첫번째 팝업창 닫기</button>
+        </p>
+
+        <h2>화면의 해상도 얻어와서 스크린 중간에 팝업띄우기</h2>
+        <p style="text-align: center;">
+            <button onclick="screenCenterPop();">화면중간에 팝업띄우기</button>
+        </p>
+
+        <h2>팝업의 팝업팡에서 부모창 제어하기</h2>
+        <p>
+            <input type="button" id="btnFirst" onclick="openChild1();" value="첫번째팝업창열기">
+        </p>
+    </fieldset>
+</body>
+</html>
