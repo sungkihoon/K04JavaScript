@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J18FormObject03.html</title>
+    <script>
+        //운동 혹은 과목중 하나만 선택할 수 있도록 처리
+        function choiceOne(flag) {
+            var f = document.choiceFrm;
+
+            if (flag == 1) {
+                //운동을 선택하므로 과목을 비활성화 시킴
+                for (var i = 0; i < f.t1.length; i++) {
+                    /*
+                    비활성화를 위해 checkbox의 갯수만큼 반복하면서 모든 항목을
+                    disabled시켜준다. input이 disabled되면 값을 입력할수도 없고
+                    서버로 전송도 할 수 없게 된다.
+                    */
+                    f.t1[i].disabled = true;
+                }
+
+                for (var i = 0; i < f.s1.length; i++) {
+                    //disabled속성을 해제하기 위해서 false값을 부여한다.
+                    f.s1[i].disabled = false;
+                }
+            } else if (flag == 2) {
+                for (var i = 0; i < f.s1.length; i++) {
+                    f.s1[i].disabled = true;
+                }
+
+                for (var i = 0; i < f.t1.length; i++) {
+                    f.t1[i].disabled = false;
+                }
+            }
+        }
+        //운동을 선택할때 - 2개만 선택가능
+        function spoChoice() {
+            var fn = document.choiceFrm;
+            //체크된 항목을 카운트하기위한 변수
+            var chkNum = 0;
+            //운동의 항목 갯수만큼 루프.
+            for (var i = 0; i < fn.s1.length; i++) {
+                //체크된 항목이 있을때 +1 증가됨
+                if (fn.s1[i].checked == true) {
+                    chkNum++;
+                }
+            }
+            if (chkNum >= 2) {
+                //체크된 항목이 2개이상인 경우라면..
+                for (var i = 0; i < fn.s1.length; i++) {
+                    //체크가 안된 항목을 찾아서..
+                    if (fn.s1[i].checked == false) {
+                        //비활성화 시켜준다.
+                        fn.s1[i].disabled = true;
+                    }
+                }
+            } else {
+                //선택한 항목이 2개 미만이면 모든 항목을 활성화시켜준다.
+                for (var i = 0; i < fn.s1.length; i++) {
+                    fn.s1[i].disabled = false;
+                }
+            }
+
+        }
+        //과목을 선택했을때 -3개 선택가능
+        function subChoice() {
+            var fn = document.choiceFrm;
+
+            var chkNum = 0;
+            for (var i = 0; i < fn.t1.length; i++) {
+                if (fn.t1[i].checked == true) chkNum++;
+            }
+
+            if (chkNum >= 3) {
+                for (var i = 0; i < fn.t1.length; i++) {
+                    if (fn.t1[i].checked == false) {
+                        fn.t1[i].disabled = true;
+                    }
+                }
+            } else {
+                for (var i = 0; i < fn.t1.length; i++) {
+                    fn.t1[i].disabled = false;
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h2>radio / checkbox 응용하기</h2>
+
+    <form name="choiceFrm">
+        <fieldset>
+            <legend>You 운동?? or 공부??</legend>
+            <!--
+                label태그 :
+                    checkbox나 radio를 사용할때 텍스트까지 선택영역으로
+                    지정할때 사용
+                    방법1] input태그와 Test를 label태그로 감싼다.
+                    방법2] input태그의 id속성과 label태그의 for속성을 일치시킨다.
+                
+                JS함수 호출시 this.value : 해당 input태그가 가지고있는 value
+                    속성값을 매개변수로 전달한다. 항목이 여러개인 경우 반복적인
+                    코딩을 줄일수 있다.
+            -->
+            <label>
+                <input type="radio" name="rad" value="1" onclick="choiceOne(this.value);"> 운동
+            </label>
+
+            <input type="radio" name="rad" value="2" id="rad_2" onclick="choiceOne(this.value);">
+            <label for="rad_2">공부</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>좋아하는 운동 2개만 선택하셈</legend>
+
+            <input type="checkbox" name="s1" onclick="spoChoice();">야구
+            <input type="checkbox" name="s1" onclick="spoChoice();">농구
+            <input type="checkbox" name="s1" onclick="spoChoice();">축구
+            <input type="checkbox" name="s1" onclick="spoChoice();">배구
+            <input type="checkbox" name="s1" onclick="spoChoice();">핸드볼
+            <input type="checkbox" name="s1" onclick="spoChoice();">테니스
+        </fieldset>
+
+        <fieldset>
+            <legend>좋아하는 과목 3가지만 고르삼</legend>
+
+            <input type="checkbox" name="t1" onclick="subChoice();">국어
+            <input type="checkbox" name="t1" onclick="subChoice();">영어
+            <input type="checkbox" name="t1" onclick="subChoice();">수학
+            <input type="checkbox" name="t1" onclick="subChoice();">역사
+            <input type="checkbox" name="t1" onclick="subChoice();">물리
+            <input type="checkbox" name="t1" onclick="subChoice();">화학
+            <input type="checkbox" name="t1" onclick="subChoice();">전산
+        </fieldset>
+    </form>
+</body>
+
+</html>

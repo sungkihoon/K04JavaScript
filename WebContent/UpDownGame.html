@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UpDownGame</title>
+    <script>
+        window.onload = function () {
+            var btns1 = document.getElementById("btn");
+            var text1 = document.getElementById("text");
+            var devNum1 = document.getElementById("devNum");
+            devNum.innerHTML = "0";
+            var ranNum = 1 + Math.abs(Math.floor(Math.random() * 100));
+            var min = 1;
+            var max = 100;
+
+            // //개발자로부터 숫자를 입력받기 위한 버튼을 생성
+            // for (var i = 0; i < 1; i++) {
+            //     var btn = document.createElement("button");
+            //     btn.innerHTML = "" + i;
+            //     btn.onclick = function (e) {
+            //         var number = parseInt(devNum.innerHTML);
+            //         var ranNum = parseInt(this.innerHTML);
+            //         devNum.innerHTML = number * 10 + ranNum;
+            //     };
+            //     btns1.appendChild(btn);
+            // }
+
+            var okBtn = document.createElement("button");
+            okBtn.innerHTML = "확인";
+
+
+            okBtn.onclick = function (e) {
+                var number = parseInt(devNum.innerHTML);
+                if (number < min || number > max) {
+                    text1.value += "입력한 숫자" + number + "는 범위에 맞지 않습니다. \n";
+                    devNum.innerHTML = "0"
+                } else if (number == ranNum) {
+                    text1.value += number + " 정답입니다!";
+                    devNum.innerHTML = "0"
+                } else if (number < ranNum) {
+                    text1.value += number + "정답이 아닙니다\n";
+                    min = number;
+                    devNum.innerHTML = "0"
+                } else if (number > ranNum) {
+                    text1.value += number + "정답이 아닙니다\n";
+                    max = number;
+                    devNum.innerHTML = "0"
+                }
+            };
+            btns1.appendChild(okBtn);
+        };
+    </script>
+</head>
+
+<body>
+    <h1>업다운게임</h1>
+    <h2>1~100사이의 숫자를 입력하세요</h2>
+    <div style="font-size: 20px; font-weight: bold;">
+        시도횟수 : <span id=""></span>
+    </div><br />
+    <div>
+        숫자입력 : <span id="devNum"></span>
+        <input type="text" name="devNum">
+    </div>
+    <div id="btn"></div>
+    <img src="./images/심령사진.jpg" alt="심령사진" style="width: 300px; height: auto;" />
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J16MakeObject01.html</title>
+    <script>
+        function inquiry(){//잔고확인
+            return this.balance;
+        }
+        function deposit(money){//입금처리
+            this.balance += money;
+        }
+        function withdraw(money){//출금처리
+            this.balance -= money;
+        }
+        
+        //사용자정의 객체
+        var account = new Object();
+        //멤버변수 정의
+        account.owner = "홍길동";
+        account.code = "12345-78-999";
+        account.balance = 1000000;
+        //멤버메소드 정의(함수연결시 소괄호 생략)
+        account.i = inquiry; 
+        account.d = deposit;
+        account.w = withdraw;
+    </script>
+</head>
+<body>
+    <h2>new Object()로 사용자객체 만들기</h2>
+	
+	<script>
+		document.write("account객체=><br/>");
+		document.write("소유자:"+ account.owner +"<br/>");
+		document.write("계좌번호:"+ account.code +"<br/>");
+		document.write("잔액:"+ account.balance +"<br/>");
+		
+		account.d(15000);
+		document.write("15000원 입금후 잔액:"+account.i() +"<br/>");
+		account.w(20000);
+		document.write("20000원 출금후 잔액:"+account.i() +"<br/>");
+	</script>
+</body>
+</html>
