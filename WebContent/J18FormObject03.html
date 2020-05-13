@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>J18FormObject03.html</title>
-    <script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>J18FormObject03.html</title>
+<script>
         //운동 혹은 과목중 하나만 선택할 수 있도록 처리
         function choiceOne(flag) {
             var f = document.choiceFrm;
@@ -14,9 +14,9 @@
                 //운동을 선택하므로 과목을 비활성화 시킴
                 for (var i = 0; i < f.t1.length; i++) {
                     /*
-                    비활성화를 위해 checkbox의 갯수만큼 반복하면서 모든 항목을
+					비활성화를 위해 checkbox의 갯수만큼 반복하면서 모든 항목을
                     disabled시켜준다. input이 disabled되면 값을 입력할수도 없고
-                    서버로 전송도 할 수 없게 된다.
+					서버로 전송도 할 수 없게 된다.
                     */
                     f.t1[i].disabled = true;
                 }
@@ -89,12 +89,12 @@
 </head>
 
 <body>
-    <h2>radio / checkbox 응용하기</h2>
+	<h2>radio / checkbox 응용하기</h2>
 
-    <form name="choiceFrm">
-        <fieldset>
-            <legend>You 운동?? or 공부??</legend>
-            <!--
+	<form name="choiceFrm">
+		<fieldset>
+			<legend>You 운동?? or 공부??</legend>
+			<!--
                 label태그 :
                     checkbox나 radio를 사용할때 텍스트까지 선택영역으로
                     지정할때 사용
@@ -105,37 +105,35 @@
                     속성값을 매개변수로 전달한다. 항목이 여러개인 경우 반복적인
                     코딩을 줄일수 있다.
             -->
-            <label>
-                <input type="radio" name="rad" value="1" onclick="choiceOne(this.value);"> 운동
-            </label>
+			<label> <input type="radio" name="rad" value="1"
+				onclick="choiceOne(this.value);"> 운동
+			</label> <input type="radio" name="rad" value="2" id="rad_2"
+				onclick="choiceOne(this.value);"> <label for="rad_2">공부</label>
+		</fieldset>
 
-            <input type="radio" name="rad" value="2" id="rad_2" onclick="choiceOne(this.value);">
-            <label for="rad_2">공부</label>
-        </fieldset>
+		<fieldset>
+			<legend>좋아하는 운동 2개만 선택하셈</legend>
 
-        <fieldset>
-            <legend>좋아하는 운동 2개만 선택하셈</legend>
+			<input type="checkbox" name="s1" onclick="spoChoice();">야구 <input
+				type="checkbox" name="s1" onclick="spoChoice();">농구 <input
+				type="checkbox" name="s1" onclick="spoChoice();">축구 <input
+				type="checkbox" name="s1" onclick="spoChoice();">배구 <input
+				type="checkbox" name="s1" onclick="spoChoice();">핸드볼 <input
+				type="checkbox" name="s1" onclick="spoChoice();">테니스
+		</fieldset>
 
-            <input type="checkbox" name="s1" onclick="spoChoice();">야구
-            <input type="checkbox" name="s1" onclick="spoChoice();">농구
-            <input type="checkbox" name="s1" onclick="spoChoice();">축구
-            <input type="checkbox" name="s1" onclick="spoChoice();">배구
-            <input type="checkbox" name="s1" onclick="spoChoice();">핸드볼
-            <input type="checkbox" name="s1" onclick="spoChoice();">테니스
-        </fieldset>
+		<fieldset>
+			<legend>좋아하는 과목 3가지만 고르삼</legend>
 
-        <fieldset>
-            <legend>좋아하는 과목 3가지만 고르삼</legend>
-
-            <input type="checkbox" name="t1" onclick="subChoice();">국어
-            <input type="checkbox" name="t1" onclick="subChoice();">영어
-            <input type="checkbox" name="t1" onclick="subChoice();">수학
-            <input type="checkbox" name="t1" onclick="subChoice();">역사
-            <input type="checkbox" name="t1" onclick="subChoice();">물리
-            <input type="checkbox" name="t1" onclick="subChoice();">화학
-            <input type="checkbox" name="t1" onclick="subChoice();">전산
-        </fieldset>
-    </form>
+			<input type="checkbox" name="t1" onclick="subChoice();">국어 <input
+				type="checkbox" name="t1" onclick="subChoice();">영어 <input
+				type="checkbox" name="t1" onclick="subChoice();">수학 <input
+				type="checkbox" name="t1" onclick="subChoice();">역사 <input
+				type="checkbox" name="t1" onclick="subChoice();">물리 <input
+				type="checkbox" name="t1" onclick="subChoice();">화학 <input
+				type="checkbox" name="t1" onclick="subChoice();">전산
+		</fieldset>
+	</form>
 </body>
 
 </html>
